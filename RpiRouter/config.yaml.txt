@@ -1,11 +1,24 @@
-name: "haap"
-description: "HA access point"
-version: "1.0.5"
-slug: "haap"
-arch:
-  - aarch64
-  - amd64
-  - armhf
-  - armv7
-  - i386
-url: https://github.com/micmoc95/HA-RPI/haap
+name: Raspberry Pi Router
+version: 1.0.0
+slug: rpi-router
+description: Configures the Raspberry Pi 5 to act as a network router between end0 and enu1
+init: false
+discovery: []
+startup: services
+boot: auto
+host_network: true
+ports:
+  22/tcp:
+map:
+  - config:rw
+  - sys:rw
+schema: {}
+stage: experimental
+services:
+  - start:
+      sequence:
+        - action: |
+            echo 1 > /proc/sys/net/ipv4/ip_forward
+            iptables -t nat -A POSTROUTING -o enu1 -j MASQUERADE
+            iptables -A FORWARD -i enu1 -o end0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+            iptables -A FORWARD -i end0 -o enu1 -j ACCEPT
