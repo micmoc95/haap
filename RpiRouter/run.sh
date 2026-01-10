@@ -1,4 +1,4 @@
 #!/bin/bash
 lsusb -v
-adb devices
+/opt/adb devices
 tail -f /dev/null
