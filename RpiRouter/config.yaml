@@ -5,3 +5,4 @@ slug: "rpi-router"
 init: false
 arch:
   - arm64
+  - armv8
