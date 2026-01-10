@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+RUN apk add android-tools
+
 COPY run.sh /
 RUN chmod a+x /run.sh
 
