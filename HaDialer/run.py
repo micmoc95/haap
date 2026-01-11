@@ -19,14 +19,14 @@ def ha(url, data=None):
 ha("/core/api/services/hadialer/dial", {
     "description": "Composition d'un numéro de téléphone",
     "fields": {
-        "numéro": {"description":"Numéro à composer"}
+        "num": {"description":"Numéro à composer"}
     }
 })
 
 @app.route("/dial", methods=["POST"])
 def dial():
     data = request.json or {}
-    log.info("Commande reçue: %s", data.get("numéro"))
+    log.info("Commande reçue: %s", data.get("num"))
     return "OK"
 
 app.run(host="0.0.0.0", port=8124)
