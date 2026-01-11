@@ -24,8 +24,6 @@ ha("/core/api/services/py_usb_addon/do_usb", {
 def do_usb():
     data = request.json or {}
     print("Commande reçue:", data)
-    lsusb
-    adb devices
     return "OK"
 
 app.run(host="0.0.0.0", port=8124)
