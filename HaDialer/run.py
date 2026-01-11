@@ -26,4 +26,4 @@ def dial():
     print("Commande reçue:", data)
     return "OK"
 
-app.run(host="0.0.0.0", port=8124)
+app.run(host="0.0.0.0", port=8124, debug=True)
