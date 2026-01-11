@@ -1,9 +1,7 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM python:3.12-alpine
 
-RUN apk add android-tools
+COPY run.py requirements.txt /
+RUN apk add --no-cache usbutils android-tools
+RUN pip instqll -r requirements.txt
 
-COPY run.sh /
-RUN chmod a+x /run.sh
-
-CMD [ "/run.sh" ]
+CMD [ "python", "/run.sh" ]
