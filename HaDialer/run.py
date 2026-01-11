@@ -29,7 +29,8 @@ def dial():
     num = data.get("num")
     log.info("Numéro à composer: %s", num)
     try:
-        result = subprocess.run("adb shell am start -a android.intent.action.Call -d tel:" + num, capture_output=True, text=True, check=True)
+        cmd = "adb shell am start -a android.intent.action.Call -d tel:" + num
+        result = subprocess.run(cmd.split(), capture_output=True, text=True, check=True)
         log.info("Résultat : %s", result.stdout.strip())
         return result.stdout
     except subprocess.CalledProcessError as e:
