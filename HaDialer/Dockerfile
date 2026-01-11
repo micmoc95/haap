@@ -4,4 +4,4 @@ COPY run.py requirements.txt /
 RUN apk add --no-cache usbutils android-tools
 RUN pip install -r requirements.txt
 
-CMD [ "python", "/run.sh" ]
+CMD [ "python", "/run.py" ]
