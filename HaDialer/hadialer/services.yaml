@@ -1,0 +1,6 @@
+dial:
+  name: Dial number through adb
+  description: Dial number on smartphone through adb
+  fields:
+    num:
+      example: "+33668013175"
