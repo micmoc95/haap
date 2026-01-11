@@ -13,15 +13,15 @@ def ha(url, data=None):
         json=data
     )
 
-ha("/core/api/services/py_usb_addon/do_usb", {
+ha("/core/api/services/hadialer/dial", {
     "description": "Action USB Python",
     "fields": {
         "cmd": {"description":"Commande USB"}
     }
 })
 
-@app.route("/do_usb", methods=["POST"])
-def do_usb():
+@app.route("/dial", methods=["POST"])
+def dial():
     data = request.json or {}
     print("Commande reçue:", data)
     return "OK"
