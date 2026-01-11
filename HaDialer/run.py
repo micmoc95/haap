@@ -17,16 +17,16 @@ def ha(url, data=None):
     )
 
 ha("/core/api/services/hadialer/dial", {
-    "description": "Action USB Python",
+    "description": "Composition d'un numéro de téléphone",
     "fields": {
-        "cmd": {"description":"Commande USB"}
+        "numéro": {"description":"Numéro à composer"}
     }
 })
 
 @app.route("/dial", methods=["POST"])
 def dial():
     data = request.json or {}
-    log.info("Commande reçue: %s", data.get("cmd"))
+    log.info("Commande reçue: %s", data.get("numéro"))
     return "OK"
 
-app.run(host="0.0.0.0", port=8124, debug=True)
+app.run(host="0.0.0.0", port=8124)
