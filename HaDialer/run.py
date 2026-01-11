@@ -26,7 +26,7 @@ ha("/core/api/services/hadialer/dial", {
 @app.route("/dial", methods=["POST"])
 def dial():
     data = request.json or {}
-    log.info("Commande reçue:", data)
+    log.info("Commande reçue: %s", data.get("cmd"))
     return "OK"
 
 app.run(host="0.0.0.0", port=8124, debug=True)
