@@ -28,7 +28,7 @@ def dial():
     data = request.json or {}
     num = data.get("num")
     log.info("Numéro à composer: %s", num)
-    try
+    try:
         result = subprocess.run("adb shell am start -a android.intent.action.Call -d tel:" + num, capture_output=True, text=True, check=True)
         log.info("Résultat : %s", result.stdout.strip())
         return result.stdout
