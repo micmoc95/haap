@@ -26,7 +26,14 @@ ha("/core/api/services/hadialer/dial", {
 @app.route("/dial", methods=["POST"])
 def dial():
     data = request.json or {}
-    log.info("Commande reçue: %s", data.get("num"))
-    return "OK"
+    num = data.get("num")
+    log.info("Numéro à composer: %s", num)
+    try
+        result = subprocess.run("adb shell am start -a android.intent.action.Call -d tel:" + num, capture_output=True, text=True, check=True)
+        log.info("Résultat : %s", result.stdout.strip())
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        log.error("Erreur lors de l'exécution : %s", e.stderr)
+        return e.stderr, 500
 
 app.run(host="0.0.0.0", port=8124)
